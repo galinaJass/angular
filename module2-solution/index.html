@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <!-- <script src="styles/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
+    <style>
+      .emptyMessage {
+        font-weight: bold;
+        color: red;
+        font-size: 1.2em;
+      }
+      li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+      }
+      li > button {
+        margin-left: 6px;
+      }
+      button > span {
+        color: green;
+      }
+    </style>
+    <title>Shopping List Check Off</title>
+  </head>
+<body ng-app="ShoppingListCheckOff">
+  <div class="container">
+    <h1>Shopping List Check Off</h1>
+    <div class="row">
+      <!-- To Buy List -->
+      <div class="col-xs-6" ng-controller="ToBuyController as toBuy">
+       <h2>To Buy:</h2>
+       <ul>
+         <li ng-repeat="item in toBuy.toBuyItems">
+           Buy {{ item.quantity }} {{ item.name }}
+           <button class="btn btn-default" ng-click="toBuy.removeItem($index);"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+         </li>
+       </ul>
+       <div ng-if="toBuy.toBuyItems.length == 0" class="emptyMessage">Everything is bought!</div>
+      </div>
+
+      <!-- Already Bought List -->
+      <div class="col-xs-6" ng-controller="AlreadyBoughtController as bought">
+       <h2>Already Bought:</h2>
+       <ul>
+         <li ng-repeat="item in bought.boughtItems">
+           Bought {{ item.quantity }} of {{ item.name }}
+       </ul>
+       <div ng-if="bought.boughtItems.length == 0" class="emptyMessage">Nothing bought yet.</div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="styles/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <script src="styles/assets/js/ie10-viewport-bug-workaround.js"></script> -->
+</body>
+</html>
